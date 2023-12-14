@@ -1,0 +1,9 @@
+# Ignore dataset
+*csv
+
+# Ignore virtual environment folders
+venv/
+
+# Ignore log files
+*.log
+
