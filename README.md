@@ -1,6 +1,6 @@
-# NormCluster
+# GraphCluster
 
-NormCluster is a Python library for normalizing tabular data, evaluating distances between rows, and creating a graph representation based on specified metrics.
+GraphCluster is a Python library for creating a graph representation of tabular data.
 
 ## Features
 
