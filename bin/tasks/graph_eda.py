@@ -28,7 +28,7 @@ def visual_style(G, layout=None):
     # set visual style
     visual_style = {}
     ## change label size
-    visual_style['vertex_size'] = 0.2
+    visual_style['vertex_size'] = 3
     ## change color
     visual_style['vertex_color'] = [palette[color_look_up_table[v['group']]] for v in G.vs()]
     ## change the width of the verteces

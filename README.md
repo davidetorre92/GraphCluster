@@ -4,12 +4,15 @@ GraphCluster is a Python library for creating a graph representation of tabular 
 
 ## Features
 
-- **Normalization:** Preprocess tabular data, particularly CSV files, for better analysis.
-- **Distance Metrics:** Evaluate distances between rows using user-defined metrics.
+- **Distance Metrics:** Evaluate distances between data points using user-defined metrics.
 - **Graph Creation:** Generate graphs using the igraph library with edges based on distance metrics.
-- **Centrality Measurement:** Assess centrality to classify the typicality of entries.
+- **Visualization:** Plot the graph to understand how different data is distributed
 
-## Quickstart
+**UPCOMING**
+- **Centrality Measurement:** Assess centrality to classify the typicality of entries.
+- **Clustering via community detection:** Search for communities in the graph to cluster the data points.
+
+## Quickstart and Demo
 
 ### Downloading the Repository
 
@@ -23,33 +26,44 @@ Navigate to the repository directory and install the required dependencies using
 ```bash
 pip install -r requirements.txt
 ```
+### Demo
+The creation of a graph from tabular data happens in two steps:
+1. Evaluate the distance between all pairs of nodes
+2. Create a graph according to some thresholdù
 
-### Similarity Evaluation
+#### 1. Distance Evaluation
+
+```python
+python3 bin/graph_definition/evaluate_similarity.py -c config.ini
+```
+
+#### 2. Graph Creation
+```python
+python3 bin/graph_definition/graph_creation.py -c config.ini
+```
+### Tasks
+#### Graph Visualization
+Run the script for graph visualization using:
+```python
+python3 bin/tasks/visualization.py -c config.ini
+```
+This script will generate:
+1. The graph itself
+2. The degree distribution
+3. The correlation between groups
+
+The path to the corresponding data will be displayed on screen.
+## Flowchart
+![plot](./GraphCluster.png)
+
+## Setup
 1. Open the script graph_definition/evaluate_similarity.py.
 2. Change the path of the desired file and the output similarity dataframe.
 3. Run the script with the following command:
 
-```python
-python3 graph_definition/evaluate_similarity.py
-```
-
-### Graph Creation
 1. Open the script graph_definition/graph_creation.py.
 2. Change the name of the similarity dataframe and set the threshold.
 3. Run the script with the following command:
-
-```python
-python3 graph_definition/graph_creation.py
-```
-### Graph Visualization
-Run the script for graph visualization using:
-```python
-python3 tasks/visualization.py
-```
-
-
-## Flowchart
-![plot](./GraphCluster.png)
 
 ## Folder organization
 For folder organization refer to 'A Quick Guide to Organizing Computational Biology Projects' by William Stafford Noble
