@@ -50,3 +50,9 @@ python3 tasks/visualization.py
 
 ## Flowchart
 ![plot](./GraphCluster.png)
+
+## Folder organization
+For folder organization refer to 'A Quick Guide to Organizing Computational Biology Projects' by William Stafford Noble
+https://doi.org/10.1371/journal.pcbi.1000424
+
+https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424#s4
