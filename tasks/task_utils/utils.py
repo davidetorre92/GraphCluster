@@ -3,6 +3,7 @@ import pandas as pd
 import igraph as ig
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib import colors as mcolors
 
 def cosine_similarity(row_i, row_j):
     return np.dot(row_i, row_j) / (np.sqrt(np.dot(row_i, row_i)) * np.sqrt(np.dot(row_j, row_j)))
@@ -13,32 +14,26 @@ def euclidean_similarity(row_i, row_j):
 
 # Visualization function
 def visual_style(G, layout=None):
-    # set layout    
-    if layout is None:
-        layout = G.layout_fruchterman_reingold(niter=1000)
-
-
-    palette = {
-        -1: '#888888', 
-        0: '#1f77b4',
-        1: '#ff7f0e',
-        2: '#2ca02c',
-        3: '#d62728',
-        4: '#9467bd',
-    }
     try:
         G.vs[0]['group']
     except:
         raise Exception("Label names not available. Aborting...")
-    
-    color_look_up_table = {key:value for value, key in enumerate(np.unique(G.vs['group']))}
+    # set layout    
+    if layout is None:
+        layout = G.layout_fruchterman_reingold(niter=1000)
+
+    unique_groups = np.unique(G.vs['group'])    
+    # Generate colors
+    tableau_colors = list(mcolors.TABLEAU_COLORS.values())
+    palette_array = [tableau_colors[i % len(tableau_colors)] for i in range(len(unique_groups))]
+    color_look_up_table = {key: value for value, key in enumerate(unique_groups)}
 
     # set visual style
     visual_style = {}
     ## change label size
     visual_style['vertex_size'] = 0.2
     ## change color
-    visual_style['vertex_color'] = [palette[color_look_up_table[v['group']]] for v in G.vs()]
+    visual_style['vertex_color'] = [palette_array[color_look_up_table[v['group']]] for v in G.vs()]
     ## change the width of the verteces
     visual_style['vertex_frame_width'] = 0.2
 
@@ -97,7 +92,7 @@ def plot_graph(G, target = None):
         fig, ax = plt.subplots()
     else:
         ax = target
-        fig = ax.get_figure()
+        fig = ax.get_gca()
         
     ig.plot(G, target = ax, **vs)
 
