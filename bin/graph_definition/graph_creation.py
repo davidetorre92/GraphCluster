@@ -8,7 +8,7 @@ from configparser import ConfigParser
 
 # ArgParser
 parser = argparse.ArgumentParser(description = "Create similarity graph")
-parser.add_argument("--config", "-c", type = str, help = "path/to/config.ini")
+parser.add_argument("--config", "-c", type = str, help = "path/to/config.ini", required=True)
 args = parser.parse_args()
 config_path = args.config
 
