@@ -7,3 +7,10 @@ venv/
 # Ignore log files
 *.log
 
+# Test data
+data/_dati_ADA/
+data/_dati_LUISS/
+data/make_moon.graphml
+graph_eda/
+preprocessing/
+
