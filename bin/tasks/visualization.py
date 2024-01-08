@@ -1,16 +1,18 @@
+import argparse
+from configparser import ConfigParser
+import os
+
 import numpy as np
 import pandas as pd
-
-import os
 import igraph as ig
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from graph_definition.graph_utils.utils import *
 
+from graph_eda import plot_degree_distribution, plot_graph
 # ArgParser
 parser = argparse.ArgumentParser(description = "Create similarity graph")
-parser.add_argument("--config", "-c", type = str, help = "path/to/config.ini")
+parser.add_argument("--config", "-c", type = str, help = "path/to/config.ini", required=True)
 args = parser.parse_args()
 config_path = args.config
 
@@ -23,15 +25,16 @@ similarity_df_path = config.get('similarity', 'similarity_df_out_path')
 label_col = config.get('similarity', 'label_col')
 threshold = config.get('similarity', 'threshold') 
 graph_path = config.get('graph options', 'graph_path')
+eda_path = config.get('task options', 'visualization_folder')
+group_order = config.get('task options', 'group_order', fallback = None)
 
 # Settings
-group_order = [0, 1]
 plot_size = 2
 
 if os.path.exists(os.path.dirname(eda_path)) is False:
-    raise Warning(f"{eda_path} does not exists, creating now...")
+    print(f"Warning: {eda_path} does not exists, creating now...")
     os.makedirs(os.path.dirname(eda_path))
-    
+ 
 # Script
 ## 1. Read graph
 G = ig.Graph.Read_GraphML(graph_path)
@@ -57,10 +60,11 @@ print()
 print("Plotting correlation...")
 rows = []
 
-if 'group_order' in globals():
+if group_order is not None:
     unique_labels = group_order
 else:
     unique_labels = np.unique(G.vs['group'])
+
 for v_i in G.vs():
     neighbors_of_v_i = v_i.neighbors()
     neighbour_data = {label: 0 for label in unique_labels}
