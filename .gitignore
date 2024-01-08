@@ -1,7 +1,4 @@
-# Ignore dataset
-*csv
-
-# Ignore virtual environment folders
+# Ignore virtual environment and cache folders
 venv/
 **/__pycache__/
 # Ignore log files
@@ -10,4 +7,4 @@ venv/
 # Other data for testing different from demo
 data/_dati_ADA/
 data/_dati_LUISS/
-
+results/test/make_moons/
