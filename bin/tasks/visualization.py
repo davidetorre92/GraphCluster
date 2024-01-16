@@ -10,6 +10,8 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 from graph_eda import plot_degree_distribution, plot_graph
+from datetime import datetime
+
 # ArgParser
 parser = argparse.ArgumentParser(description = "Create similarity graph")
 parser.add_argument("--config", "-c", type = str, help = "path/to/config.ini", required=True)
@@ -30,7 +32,7 @@ group_order = config.get('task options', 'group_order', fallback = None)
 
 # Settings
 plot_size = 2
-
+out_id = datetime.now().strftime('%Y_%m_%d__%H_%M')
 if os.path.exists(os.path.dirname(eda_path)) is False:
     print(f"Warning: {eda_path} does not exists, creating now...")
     os.makedirs(os.path.dirname(eda_path))
@@ -43,7 +45,7 @@ G = ig.Graph.Read_GraphML(graph_path)
 ## Degree distribution
 print("Plotting degree distribution...")
 fig, ax = plot_degree_distribution(G)
-img_path = os.path.join(eda_path, 'degree_distribution.pdf')
+img_path = os.path.join(eda_path, f'degree_distribution_{out_id}.pdf')
 fig.savefig(img_path)
 print(f"Degree distribution saved in {img_path}")
 print()
@@ -52,7 +54,7 @@ print()
 print("Plotting the graph...")
 fig, ax = plot_graph(G)
 fig.tight_layout()
-img_path = os.path.join(eda_path, f'graph.pdf')
+img_path = os.path.join(eda_path, f'graph_{out_id}.pdf')
 fig.savefig(img_path)
 print(f"Graph visualization saved in {img_path}")
 print()
@@ -101,7 +103,7 @@ for irow, label_i in enumerate(unique_labels):
         axs[irow][icol].grid('both')
 fig.tight_layout()
 
-img_path = os.path.join(eda_path, f"correlation_group_all_{G['Label name']}.pdf")
+img_path = os.path.join(eda_path, f"correlation_group_all_{G['Label name']}_{out_id}.pdf")
 fig.savefig(img_path)
 print(f"Neighbour correlation saved in {img_path}")
 
