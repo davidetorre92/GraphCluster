@@ -6,9 +6,7 @@ def cosine_similarity(row_i, row_j):
     return np.dot(row_i, row_j) / (np.sqrt(np.dot(row_i, row_i)) * np.sqrt(np.dot(row_j, row_j)))
 
 def euclidean_similarity(row_i, row_j):
-    delta = row_i - row_j
-    return np.sqrt(np.dot(delta, delta))
-
+    return np.sqrt(np.sum((row_i - row_j) ** 2, axis = -1))
 
 def get_level_of_impairment(MMSE):
     MMSE = int(MMSE + 0.5)

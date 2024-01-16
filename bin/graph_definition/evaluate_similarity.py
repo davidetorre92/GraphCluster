@@ -48,7 +48,8 @@ similarity_df = pd.DataFrame(rows, columns=['node_i', 'node_j', 'sim'])
 
 out_folder = os.path.dirname(similarity_df_out_path)
 if os.path.exists(out_folder) is False:
+    print(f"Creating the folder {out_folder}")
     os.makedirs(out_folder)
 
 similarity_df.to_csv(similarity_df_out_path)
-print(f'Data saved in {similarity_df_out_path}, rows: {normalized_df.shape[0]}')
+print(f'Similarity dataset saved in {similarity_df_out_path}')
