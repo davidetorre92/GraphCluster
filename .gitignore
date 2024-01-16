@@ -7,4 +7,3 @@ venv/
 # Other data for testing different from demo
 data/_dati_ADA/
 data/_dati_LUISS/
-results/test/make_moons/
