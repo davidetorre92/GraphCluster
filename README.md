@@ -65,8 +65,10 @@ The path to the corresponding data will be displayed on screen.
 2. Change the name of the similarity dataframe and set the threshold.
 3. Run the script with the following command:
 
-## Folder organization
-For folder organization refer to 'A Quick Guide to Organizing Computational Biology Projects' by William Stafford Noble
-https://doi.org/10.1371/journal.pcbi.1000424
+# Contacts
+For any inquiries or futher discussion regarding this project, we invite to reach out to us. Our contacts are
 
-https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424#s4
+- [Davide Torre](https://www.linkedin.com/in/davidetorre92/): d[dot]torre[at]iac[dot]cnr[dot]it
+- [Davide Chicco](https://davidechicco.it): davidechicco[at]davidechicco[dot]it
+
+
